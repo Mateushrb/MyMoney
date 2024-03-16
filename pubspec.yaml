@@ -24,8 +24,16 @@ dev_dependencies:
   mobx_codegen: ^2.0.1+3
   build_runner: ^2.0.5
 
+
 flutter:
   uses-material-design: true
+  fonts:
+    - family: Lato
+      fonts:
+        - asset: lib/src/fonts/assets/Lato-Regular.ttf
+        - asset: lib/src/fonts/assets/Lato-Bold.ttf
+          weight: 700
+
 
   # To add assets to your application, add an assets section, like this:
   # assets:

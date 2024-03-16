@@ -103,7 +103,6 @@ class _LoginPageState extends State<LoginPage> {
                           padding: const EdgeInsets.only(top: 80, bottom: 10),
                           child: AppButton(
                             action: () {
-                              // Navega para a home_page.dart quando o botão for pressionado
                             Navigator.push(
                               context,
                             MaterialPageRoute(builder: (context) => HomePage()),

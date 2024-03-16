@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:my_money/src/modules/home/components/inicio_page.dart';
+import 'package:my_money/src/modules/home/components/pesquisa_page.dart';
+import 'package:my_money/src/modules/home/components/notificacao_page.dart';
+import 'package:my_money/src/modules/home/components/perfil_page.dart';
+
 
 void main() {
   runApp(MyApp());
@@ -22,10 +27,10 @@ class _HomePageState extends State<HomePage> {
   int _selectedIndex = 0;
 
   List<Widget> _widgetOptions = <Widget>[
-    Center(child: Text('Conteúdo da Página 1')),
-    Center(child: Text('Conteúdo da Página 2')),
-    Center(child: Text('Conteúdo da Página 3')),
-    Center(child: Text('Conteúdo da Página 4')),
+    InicioPage(),
+    PesquisaPage(),
+    NotificacaoPage(),
+    PerfilPage(),
   ];
 
   void _onItemTapped(int index) {
@@ -38,7 +43,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Home Page'),
+        title: Text('Sair'),
       ),
       body: IndexedStack(
         index: _selectedIndex,
@@ -47,26 +52,30 @@ class _HomePageState extends State<HomePage> {
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
+            icon: Icon(Icons.home,
+            color: Colors.green),
+            label: 'Início',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.search),
-            label: 'Search',
+            icon: Icon(Icons.search,
+            color: Colors.green),
+            label: 'Pesquisa',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.notifications),
-            label: 'Notifications',
+            icon: Icon(Icons.notifications,
+            color: Colors.green),
+            label: 'Notificação',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.account_circle),
-            label: 'Profile',
+            icon: Icon(Icons.account_circle,
+            color: Colors.green),
+            label: 'Perfil',
           ),
         ],
         currentIndex: _selectedIndex,
-        selectedItemColor: Colors.blue,
+        selectedItemColor: Colors.green[300],
         unselectedItemColor: Colors.grey,
-        selectedIconTheme: IconThemeData(color: Colors.blue),
+        selectedIconTheme: IconThemeData(color: Colors.green[100]),
         onTap: _onItemTapped,
       ),
     );
