@@ -38,17 +38,16 @@ class AppButton extends StatelessWidget {
           onPressed: action,
           style: TextButton.styleFrom(
             shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-            backgroundColor: Colors.green[300],
-            foregroundColor: Colors.green[300],
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),
+            backgroundColor: Colors.green,
+            foregroundColor: Colors.green,
             padding: const EdgeInsets.all(12),
-            surfaceTintColor: Colors.green[300],
+            surfaceTintColor: Colors.green,
           ),
           child: Text(label,
               textAlign: TextAlign.center,
               overflow: TextOverflow.clip,
-              style: const TextStyle(color: Colors.white),
-              ),
+              style: const TextStyle(color: Colors.white)),
         ),
       ),
     );

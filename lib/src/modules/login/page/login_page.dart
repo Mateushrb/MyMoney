@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:my_money/src/modules/home/page/home_page.dart';
 import 'package:my_money/src/modules/login/components/register_link.dart';
+import 'package:my_money/src/router/app_router.dart';
 import 'package:my_money/src/shared/colors/app_colors.dart';
 import 'package:my_money/src/shared/components/app_button.dart';
 import 'package:my_money/src/shared/components/app_loading.dart';
 import 'package:my_money/src/shared/components/app_logo_title.dart';
-import 'package:my_money/src/shared/components/app_checkbox.dart';
 
 class LoginPage extends StatefulWidget {
-  const LoginPage({Key? key}) : super(key: key);
+  const LoginPage({super.key});
 
   @override
   State<LoginPage> createState() => _LoginPageState();
@@ -19,7 +18,6 @@ class _LoginPageState extends State<LoginPage> {
   final TextEditingController passwordController = TextEditingController();
 
   bool isLoading = true;
-  bool rememberMe = false;
 
   @override
   void initState() {
@@ -31,12 +29,6 @@ class _LoginPageState extends State<LoginPage> {
         }));
   }
 
-  void _onRememberMeChanged(bool? newValue) {
-    setState(() {
-      rememberMe = newValue ?? false;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return isLoading
@@ -44,17 +36,17 @@ class _LoginPageState extends State<LoginPage> {
             child: AppLoading(),
           )
         : Scaffold(
-            backgroundColor: Colors.grey[200],
+            backgroundColor: AppColors.appPageBackground,
             body: SingleChildScrollView(
               child: SafeArea(
-                child: Center(
-                  child: Padding(
-                    padding: const EdgeInsets.only(
-                      top: 120,
-                      left: 75,
-                      right: 75,
-                    ),
-                    child: Column(
+                  child: Center(
+                child: Padding(
+                  padding: const EdgeInsets.only(
+                    top: 140,
+                    left: 25,
+                    right: 25,
+                  ),
+                  child: Column(
                       mainAxisSize: MainAxisSize.max,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
@@ -67,59 +59,32 @@ class _LoginPageState extends State<LoginPage> {
                           enabled: true,
                           controller: loginController,
                           textAlign: TextAlign.start,
-                          autofocus: true,
+                          autofocus: false,
                           keyboardType: TextInputType.text,
-                          decoration: const InputDecoration(
-                            labelText: 'Login',
-                            prefixIcon: Icon(Icons.person),
-                          ),
+                          decoration:
+                              const InputDecoration(label: Text('Login')),
                         ),
                         TextFormField(
                           enabled: true,
                           controller: passwordController,
                           textAlign: TextAlign.start,
-                          autofocus: true,
+                          autofocus: false,
                           keyboardType: TextInputType.text,
                           obscureText: true,
-                          decoration: const InputDecoration(
-                            labelText: 'Senha',
-                            prefixIcon: Icon(Icons.lock),
-                            ),
-                        ),
-                        Row(
-                          children: [
-                            AppCheckBox(
-                              value: rememberMe,
-                              onChanged: _onRememberMeChanged,
-                              checkColor: Colors.white,
-                              activeColor: Colors.green[300],
-                              side:
-                              BorderSide(width: 1, color: Colors.green),
-                            ),
-                            const Text('Lembrar-me'),
-                          ],
+                          decoration:
+                              const InputDecoration(label: Text('Senha')),
                         ),
                         Padding(
-                          padding: const EdgeInsets.only(top: 80, bottom: 10),
-                          child: AppButton(
-                            action: () {
-                            Navigator.push(
-                              context,
-                            MaterialPageRoute(builder: (context) => HomePage()),
-                              );
-                            },
-                            label: "Login",
-                          ),
-                        ),
+                            padding: const EdgeInsets.only(top: 20, bottom: 10),
+                            child: AppButton(action: () {}, label: "Login")),
                         GestureDetector(
-                          onTap: () {},
-                          child: const RegisterLink(),
-                        ),
-                      ],
-                    ),
-                  ),
+                            onTap: () {
+                              Navigator.pushNamed(context, AppRouter.register);
+                            },
+                            child: const RegisterLink()),
+                      ]),
                 ),
-              ),
+              )),
             ),
           );
   }

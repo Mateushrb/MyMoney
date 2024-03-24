@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:my_money/src/modules/initial/page/initial_page.dart';
 import 'package:my_money/src/modules/login/page/login_page.dart';
+import 'package:my_money/src/modules/personal_register/page/personal_register_page.dart';
+import 'package:my_money/src/modules/register/page/register_page.dart';
 import 'package:my_money/src/router/app_router.dart';
 
 void main() {
@@ -23,6 +25,8 @@ class App extends StatelessWidget {
       darkTheme: ThemeData.dark(),
       routes: {
         AppRouter.login: (context) => const LoginPage(),
+        AppRouter.register: (context) => const RegisterPage(),
+        AppRouter.personalRegister: (context) => const PersonalRegisterPage(),
       },
     );
   }
