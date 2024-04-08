@@ -8,9 +8,9 @@ extension TextInputFormatterExtension on TextInputFormatter {
         text: text,
         selection: TextSelection(
           baseOffset: text.length,
-          extentOffset: text.length,
-        ),
-      ),
+          extentOffset: text.length
+        )
+      )
     ).text;
   }
 }

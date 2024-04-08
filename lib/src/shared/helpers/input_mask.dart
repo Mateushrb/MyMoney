@@ -1,22 +1,20 @@
 import 'package:flutter/services.dart';
-import 'package:my_money/src/shared/extensions/string_extension.dart';
 
 class InputMask {
-  static TextInputFormatter get moneyFormatter {
+  static TextInputFormatter get nomeyFormatter {
     return MoneyFormatter();
   }
 }
 
 class UtilFormatter {
-  static String formatDecimal({
-    required String decimalSeparator,
-    required String thousandSeparator,
-    required String leftSymbol,
-    required String rightSymbol,
-    required String value,
-    int? maxLength,
-  }) {
-    value = value.onlyNumber().trimLeftZeros();
+  static String formatDecimal(
+      {required String decimalSeparator,
+      required String thousandsSeparator,
+      required String leftSymbol,
+      required String rightSymbol,
+      required String value,
+      int? maxLength}) {
+    value = value.substring(0, maxLength);
 
     if (maxLength != null && value.length > maxLength) {
       value = value.substring(0, maxLength);
@@ -26,8 +24,8 @@ class UtilFormatter {
       value = '0$value';
     }
 
-    final String right = value.substring(value.length - 2);
     final String left = value.substring(0, value.length - 2);
+    final String right = value.substring(value.length - 2);
 
     int index = left.length;
     String maskedLeft = '';
@@ -38,7 +36,6 @@ class UtilFormatter {
     }
 
     maskedLeft = left.substring(0, index) + maskedLeft;
-
     value = '$maskedLeft$decimalSeparator$right';
     value = '$leftSymbol$value$rightSymbol';
 
@@ -48,13 +45,13 @@ class UtilFormatter {
 
 class MoneyFormatter extends TextInputFormatter {
   final String decimalSeparator;
-  final String thousandSeparator;
+  final String thousandsSeparator;
   final String leftSymbol;
   final String rightSymbol;
 
   MoneyFormatter({
     this.decimalSeparator = ',',
-    this.thousandSeparator = '.',
+    this.thousandsSeparator = '.',
     this.leftSymbol = r'R$ ',
     this.rightSymbol = '',
   });
@@ -63,17 +60,18 @@ class MoneyFormatter extends TextInputFormatter {
   TextEditingValue formatEditUpdate(
       TextEditingValue oldValue, TextEditingValue newValue) {
     final String value = UtilFormatter.formatDecimal(
-      decimalSeparator: decimalSeparator,
-      thousandSeparator: thousandSeparator,
-      leftSymbol: leftSymbol,
-      rightSymbol: rightSymbol,
-      value: newValue.text,
-    );
+        decimalSeparator: decimalSeparator,
+        thousandsSeparator: thousandsSeparator,
+        leftSymbol: leftSymbol,
+        rightSymbol: rightSymbol,
+        value: newValue.text);
 
     return TextEditingValue(
       text: value,
-      selection:
-          TextSelection(baseOffset: value.length, extentOffset: value.length),
+      selection: TextSelection(
+        baseOffset: value.length,
+        extentOffset: value.length
+      )
     );
   }
 }

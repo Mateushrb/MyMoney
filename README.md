@@ -1,4 +1,4 @@
-# my_money
+# app_my_money
 
 A new Flutter project.
 

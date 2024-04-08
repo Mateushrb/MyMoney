@@ -1,5 +1,5 @@
+import 'package:app_my_money/src/shared/colors/app_colors.dart';
 import 'package:flutter/material.dart';
-import 'package:my_money/src/shared/colors/app_colors.dart';
 
 class AppLoading extends StatelessWidget {
   const AppLoading({super.key});

@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 
 class AppButton extends StatelessWidget {
@@ -7,48 +9,46 @@ class AppButton extends StatelessWidget {
   final double? paddingTop;
   final double? paddingBottom;
   final double? paddingLeft;
-  final double? paddingRigth;
-
+  final double? paddingRight;
   final double? height;
 
-  const AppButton({
-    Key? key,
-    required this.action,
-    this.context,
-    required this.label,
-    this.paddingTop,
-    this.paddingBottom,
-    this.paddingLeft,
-    this.paddingRigth,
-    this.height,
-  }) : super(key: key);
+  const AppButton(
+      {super.key,
+      required this.action,
+      this.context,
+      required this.label,
+      this.paddingTop,
+      this.paddingBottom,
+      this.paddingLeft,
+      this.paddingRight,
+      this.height});
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.only(
-        bottom: paddingBottom ?? 0,
         top: paddingTop ?? 0,
+        bottom: paddingBottom ?? 0,
         left: paddingLeft ?? 0,
-        right: paddingRigth ?? 0,
+        right: paddingRight ?? 0,
       ),
       child: SizedBox(
         width: double.infinity,
         child: TextButton(
-          onPressed: action,
-          style: TextButton.styleFrom(
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),
-            backgroundColor: Colors.green,
-            foregroundColor: Colors.green,
-            padding: const EdgeInsets.all(12),
-            surfaceTintColor: Colors.green,
-          ),
-          child: Text(label,
+            onPressed: action,
+            style: TextButton.styleFrom(
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(50)),
+                backgroundColor: Colors.green,
+                foregroundColor: Colors.green,
+                surfaceTintColor: Colors.green,
+                padding: EdgeInsets.all(12)),
+            child: Text(
+              label,
               textAlign: TextAlign.center,
               overflow: TextOverflow.clip,
-              style: const TextStyle(color: Colors.white)),
-        ),
+              style: const TextStyle(color: Colors.white),
+            )),
       ),
     );
   }
